@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TripMate travel booking and trip planner">
+    <meta name="keywords" content="travel, holidays, destinations, booking">
+    <title>TripMate | Discover Your World</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="planeCursor" class="plane-cursor">✈</div>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <a href="#home" class="logo">tripmate<span>.</span></a>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#explore">Destinations</a></li>
+                <li><a href="#booking">Plan a Trip</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <a href="#cart" class="cart-link">
+            My Cart <span id="cartCount">0</span>
+        </a>
+    </header>
+
+    <main>
+
+        <!-- HOME -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">✦ YOUR JOURNEY BEGINS HERE</p>
+                <h1>Find your next <span>great escape.</span></h1>
+                <p>
+                    Discover beautiful places, choose your journey
+                    and create memories that stay with you forever.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#explore" class="button">Explore destinations ↗</a>
+                    <a href="#booking" class="text-link">Plan your trip →</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div><strong>50+</strong><small>Destinations</small></div>
+                    <div><strong>4</strong><small>Travel modes</small></div>
+                    <div><strong>24/7</strong><small>Travel inspiration</small></div>
+                </div>
+            </div>
+
+            <div class="hero-art">
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200"
+                    alt="Mountain landscape">
+                <div class="hero-float">
+                    <span>🌍</span>
+                    <div>
+                        <strong>The world is yours</strong>
+                        <small>Where will you go next?</small>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#explore" class="scroll-cue">SCROLL TO EXPLORE ↓</a>
+        </section>
+
+        <!-- DESTINATIONS -->
+        <section id="explore" class="section destinations-section">
+            <div class="section-heading">
+                <p class="eyebrow">✦ FIND YOUR PLACE</p>
+                <h2>Explore <span>destinations.</span></h2>
+                <p>Browse our collection of beautiful places and find your next adventure.</p>
+            </div>
+
+            <div class="destination-tools">
+                <input
+                    type="text"
+                    id="searchDestination"
+                    placeholder="Search destinations..."
+                    aria-label="Search destinations">
+
+                <select id="regionFilter" aria-label="Filter by region">
+                    <option value="All">All regions</option>
+                    <option value="North">North India</option>
+                    <option value="South">South India</option>
+                    <option value="West">West India</option>
+                    <option value="East">East India</option>
+                    <option value="International">International</option>
+                </select>
+            </div>
+
+            <div id="destinationGrid" class="destination-grid"></div>
+
+            <div class="pagination">
+                <button id="previousPage" class="page-button">← Previous</button>
+                <div id="pageNumbers" class="page-numbers"></div>
+                <button id="nextPage" class="page-button">Next →</button>
+            </div>
+
+            <p id="pageInfo" class="page-info"></p>
+        </section>
+
+        <!-- SELECTED DESTINATION -->
+        <section id="destinationDetails" class="destination-showcase">
+            <div class="showcase-overlay"></div>
+
+            <div class="showcase-content">
+                <p class="eyebrow">✦ YOUR SELECTED DESTINATION</p>
+                <h2 id="selectedName">Choose a destination</h2>
+                <p id="selectedDescription">
+                    Select a destination above to see its travel experience.
+                </p>
+                <div class="showcase-price" id="selectedPrice"></div>
+                <a href="#booking" class="button">Plan this trip ↓</a>
+            </div>
+        </section>
+
+        <!-- BOOKING PLANNER -->
+        <section id="booking" class="section booking-section">
+            <div class="section-heading">
+                <p class="eyebrow">✦ BUILD YOUR JOURNEY</p>
+                <h2>Plan your <span>trip.</span></h2>
+                <p>Choose your travel dates, transport and passengers.</p>
+            </div>
+
+            <div class="booking-layout">
+
+                <div class="booking-form">
+
+                    <div class="form-group">
+                        <label for="bookingDestination">Destination</label>
+                        <select id="bookingDestination"></select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Departure date</label>
+                            <input type="date" id="startDate">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tripDays">Trip duration</label>
+                            <select id="tripDays">
+                                <option value="2">2 days</option>
+                                <option value="3" selected>3 days</option>
+                                <option value="5">5 days</option>
+                                <option value="7">7 days</option>
+                                <option value="10">10 days</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 class="form-subtitle">Choose transport</h3>
+
+                    <div class="transport-options">
+                        <label class="transport-option">
+                            <input type="radio" name="transport" value="Flight" checked>
+                            <span>✈</span>
+                            <strong>Flight</strong>
+                            <small>Fast travel</small>
+                        </label>
+
+                        <label class="transport-option">
+                            <input type="radio" name="transport" value="Train">
+                            <span>🚆</span>
+                            <strong>Train</strong>
+                            <small>Relaxed journey</small>
+                        </label>
+
+                        <label class="transport-option">
+                            <input type="radio" name="transport" value="Bus">
+                            <span>🚌</span>
+                            <strong>Bus</strong>
+                            <small>Road journey</small>
+                        </label>
+
+                        <label class="transport-option">
+                            <input type="radio" name="transport" value="Car">
+                            <span>🚗</span>
+                            <strong>Car</strong>
+                            <small>Private travel</small>
+                        </label>
+                    </div>
+
+                    <h3 class="form-subtitle">Passengers</h3>
+
+                    <div class="passenger-row">
+                        <div>
+                            <strong>Adults</strong>
+                            <small>18 years and above</small>
+                        </div>
+                        <div class="counter">
+                            <button type="button" onclick="changePassenger('adults', -1)">−</button>
+                            <span id="adultCount">1</span>
+                            <button type="button" onclick="changePassenger('adults', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="passenger-row">
+                        <div>
+                            <strong>Minors</strong>
+                            <small>2 to 17 years</small>
+                        </div>
+                        <div class="counter">
+                            <button type="button" onclick="changePassenger('minors', -1)">−</button>
+                            <span id="minorCount">0</span>
+                            <button type="button" onclick="changePassenger('minors', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="passenger-row">
+                        <div>
+                            <strong>Infants</strong>
+                            <small>Below 2 years</small>
+                        </div>
+                        <div class="counter">
+                            <button type="button" onclick="changePassenger('infants', -1)">−</button>
+                            <span id="infantCount">0</span>
+                            <button type="button" onclick="changePassenger('infants', 1)">+</button>
+                        </div>
+                    </div>
+
+                    <p class="seat-note">
+                        Seats are counted for adults and minors.
+                        Infants are treated as lap passengers in this demo.
+                    </p>
+
+                    <div class="form-group">
+                        <label for="seatClass">Travel class</label>
+                        <select id="seatClass">
+                            <option value="Standard">Standard</option>
+                            <option value="Premium">Premium (+20%)</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="button full-button" onclick="calculateTrip()">
+                        Calculate my trip →
+                    </button>
+
+                </div>
+
+                <!-- PRICE SUMMARY -->
+                <aside class="price-card">
+                    <p class="eyebrow">YOUR TRIP ESTIMATE</p>
+                    <h3>Price breakdown</h3>
+
+                    <div class="price-line">
+                        <span>Destination package</span>
+                        <strong id="packageTotal">₹0</strong>
+                    </div>
+
+                    <div class="price-line">
+                        <span>Transport</span>
+                        <strong id="transportTotal">₹0</strong>
+                    </div>
+
+                    <div class="price-line">
+                        <span>Seats required</span>
+                        <strong id="seatTotal">1</strong>
+                    </div>
+
+                    <div class="price-line">
+                        <span>Passengers</span>
+                        <strong id="passengerTotal">1</strong>
+                    </div>
+
+                    <hr>
+
+                    <div class="price-line grand-total">
+                        <span>Estimated total</span>
+                        <strong id="grandTotal">₹0</strong>
+                    </div>
+
+                    <p class="price-disclaimer">
+                        Sample educational prices only. Actual travel prices may vary.
+                    </p>
+
+                    <button type="button" class="button full-button" onclick="addBookingToCart()">
+                        Add trip to cart
+                    </button>
+                </aside>
+
+            </div>
+        </section>
+
+        <!-- CART -->
+        <section id="cart" class="section cart-section">
+            <div class="section-heading">
+                <p class="eyebrow">✦ YOUR TRAVEL PLANS</p>
+                <h2>Your <span>cart.</span></h2>
+                <p>Review the trips you have selected.</p>
+            </div>
+
+            <div class="cart-box">
+                <div id="cartItems">
+                    <p class="empty-cart">Your cart is empty. Your next adventure is waiting!</p>
+                </div>
+
+                <div class="cart-footer">
+                    <div>
+                        <small>BOOKING TOTAL</small>
+                        <h3 id="cartTotal">₹0</h3>
+                    </div>
+
+                    <button class="button" onclick="goToCheckout()">
+                        Continue to checkout →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKOUT -->
+        <section id="checkout" class="section checkout-section">
+            <div class="section-heading">
+                <p class="eyebrow">✦ FINAL STEP</p>
+                <h2>Confirm your <span>adventure.</span></h2>
+            </div>
+
+            <div class="checkout-card">
+                <div id="checkoutSummary">
+                    <p>Add a trip to your cart to see your booking summary.</p>
+                </div>
+
+                <button class="button full-button" onclick="confirmBooking()">
+                    Confirm demo booking
+                </button>
+
+                <p class="price-disclaimer">
+                    This is a demonstration checkout. No real payment is taken.
+                </p>
+
+                <p id="bookingMessage"></p>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="section about-section">
+            <div class="about-content">
+                <p class="eyebrow">✦ ABOUT TRIPMATE</p>
+                <h2>Travel more.<br><span>Worry less.</span></h2>
+                <p>
+                    TripMate is a student-built travel planning website
+                    designed to make exploring destinations and estimating
+                    trip costs simple and enjoyable.
+                </p>
+                <a href="#explore" class="button">Explore with us →</a>
+            </div>
+
+            <div class="about-art">
+                <span>🌍</span>
+                <h3>One world.<br>Endless journeys.</h3>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section faq-section">
+            <div class="section-heading">
+                <p class="eyebrow">✦ NEED TO KNOW</p>
+                <h2>Frequently asked <span>questions.</span></h2>
+            </div>
+
+            <article class="faq-item">
+                <h3>How do I book a trip?</h3>
+                <p>Choose a destination, select transport and passengers, calculate your estimate and add the trip to your cart.</p>
+            </article>
+
+            <article class="faq-item">
+                <h3>Are these actual travel prices?</h3>
+                <p>No. The prices are sample values created for this educational mini-project.</p>
+            </article>
+
+            <article class="faq-item">
+                <h3>Does TripMate accept real payments?</h3>
+                <p>No. The checkout only demonstrates a booking confirmation. It does not process payments.</p>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- CONTACT / FOOTER -->
+    <footer id="contact">
+        <div class="footer-main">
+            <div>
+                <a href="#home" class="footer-logo">tripmate<span>.</span></a>
+                <p>Your next journey starts with a single click.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#explore">Destinations</a>
+                <a href="#booking">Plan a trip</a>
+                <a href="#about">About us</a>
+                <a href="#faq">FAQs</a>
+                <a href="mailto:tripmate@example.com">Contact us</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 TripMate. Student mini-project.</p>
+            <p>EXPLORE MORE. WORRY LESS.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
